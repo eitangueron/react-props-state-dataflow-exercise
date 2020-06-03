@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
 class Hudini extends Component {
-    constructor() {
+    constructor(){
         super()
+        this.state = {
+            show:false
+        }
     }
-    render() {
-        return {/* your code here */ }
 
+    render() {
+        return this.state.show ? "Now you see me" : "Now you don't"
     }
 }
 

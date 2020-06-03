@@ -5,7 +5,12 @@ class Landing extends Component {
 
 
     render() {
-        return {/* your code here */ }
+        let hottestItem = this.props.store.filter(item => item.hottest === true)[0]
+        return (
+            <div>
+                Welcome, {this.props.user}. The hottest item is {hottestItem.item} for ${hottestItem.price}
+            </div>
+        )
 
     }
 }

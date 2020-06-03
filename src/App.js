@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Hudini from './components/Hudini';
 import Home from './components/Home';
 import Landing from './components/Landing';
+import Article from './components/Article';
 
 class App extends Component {
   constructor() {
@@ -25,14 +26,23 @@ class App extends Component {
         { item: "Surround Sound Pelican", price: 3099, discount: 0.05, hottest: true }
       ],
       shouldDiscount: false,
-      currentPage: "Landing"
+      currentPage: "Landing",
+      companies: [
+        { name: "Tesla", revenue: 140 },
+        { name: "Microsoft", revenue: 300 },
+        { name: "Google", revenue: 600 }
+      ]
     }
   }
   // SPOT-CHECK-2: 
-  //  your generateCompanyTags method here 
+  generateCompanyTags(companies){
+    return companies.map(companie => <Company name={companie.name} revenue={companie.revenue}/>)
+  }
 
   // SPOT-CHECK-3:
-  // your upperCase method here
+  upperCase(companies){
+    return companies.map(companie =>  ({ name: companie.name.toUpperCase(), revenue: companie.revenue}))
+  }
 
   render() {
 
@@ -49,77 +59,83 @@ class App extends Component {
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 1</h4>
           <div className="exercise" id="spotcheck-1">
-            {/* your code here */}
+            <Company name={companies[0].name} revenue={companies[0].revenue} />
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 2</h4>
           <div className="exercise" id="spotcheck-2">
-            {/* your code here */}
+            {this.generateCompanyTags(companies)}
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 3</h4>
           <div className="exercise" id="spotcheck-3">
-            {/* your code here */}
+            {this.generateCompanyTags(this.upperCase(companies))}
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 4</h4>
           <div className="exercise" id="spotcheck-4">
-            {/* your code here */}
+            <Wardrobe />
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 5</h4>
           <div className="exercise" id="spotcheck-5">
-            {/* your code here */}
+            <Wardrobe2 />
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 6</h4>
           <div className="exercise" id="spotcheck-6">
-            {/* your code here */}
+            {this.state.companies.map(c => <Company key={c.name} name={c.name}/>)}
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Spotcheck 7</h4>
           <div className="exercise" id="spotcheck-7">
-            {/* your code here */}
+            Calender:
+            <Calendar reservations={this.state.reservations}/>
+            Reservations:
+            <Register reservations={this.state.reservations}/>
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Exercise 1</h4>
           <div className="exercise" id="ex-1">
-            {/* your code here */}
+            <Hudini />
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Exercise 2</h4>
           <div className="exercise" id="ex-2">
-            {/* your code here */}
+            <Landing user={this.state.user} store={this.state.store}/>
+            <hr></hr>
+            <h4>Store:</h4>
+            <Home store={this.state.store}/>
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Exercise 3</h4>
           <div className="exercise" id="ex-3">
-            {/* your code here */}
+            {this.state.currentPage ? <Landing user={this.state.user} store={this.state.store}/> : <Home store={this.state.store}/>}
           </div>
         </div>
 
         <div className="ex-space">
           <h4 className="ex-title">Exercise 4</h4>
           <div className="exercise" id="ex-4">
-            {/* your code here */}
+              <Home store={this.state.store} discount={this.state.shouldDiscount}/>  
           </div>
         </div>
 
